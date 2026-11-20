@@ -36,7 +36,7 @@ MOCK.fire("ADDON_LOADED", "WoWHelper")
 MOCK.fire("PLAYER_LOGIN")
 MOCK.runTimers()
 
-check(#WH.guideOrder == 10, "10 guides loaded (got " .. #WH.guideOrder .. ")")
+check(#WH.guideOrder == 11, "11 guides loaded (got " .. #WH.guideOrder .. ")")
 check(WH.char.guideId == "undead-01-tirisfal", "level 1 Undead starts in Tirisfal")
 check(WH.zonesByName["Tirisfal Glades"] == 1420, "zones loaded")
 check(WH:ResolveMapId("The Riverglades") == 2001, "unknown Forever zone resolved by name")
@@ -232,6 +232,36 @@ do
     MOCK.race = { "Orc", "Orc" }
     WH.player = nil
     check(juju and not WH:StepApplies(dur.steps[juju]), "Orc mage does not get Ju-Ju Heaps")
+    -- Tauren: Mulgore start, shared guides from Silverpine, Druid class chains
+    MOCK.race, MOCK.class = { "Tauren", "Tauren" }, { "Druid", "DRUID" }
+    WH.player = nil
+    check(WH:GuideForLevel().id == "tauren-01-mulgore", "level 1 Tauren gets the Mulgore guide (got " .. tostring(WH:GuideForLevel().id) .. ")")
+    check(not WH:GuideApplies(WH.guides["horde-01-durotar"]), "Durotar guide hidden from Tauren")
+    check(WH:StepApplies(silver.steps[orcStep]), "zeppelin start into Silverpine shown to Tauren")
+    check(WH:GuideApplies(WH.guides["horde-05-30-37"]), "shared 30-37 guide applies to Tauren")
+    local barrens = WH.guides["horde-03-barrens"]
+    local lessons, meats, conscript
+    for idx, st in ipairs(barrens.steps) do
+        if st.questId == 6126 and st.action == "accept" then lessons = idx end
+        if st.questId == 6365 and st.action == "accept" then meats = idx end
+        if st.questId == 842 then conscript = idx end
+    end
+    check(lessons and WH:StepApplies(barrens.steps[lessons]), "Tauren druid gets Lessons Anew")
+    check(meats and not WH:StepApplies(barrens.steps[meats]), "Tauren skips the Orc/Troll Meats to Orgrimmar")
+    check(conscript and barrens.steps[conscript].optional, "Crossroads Conscription is optional")
+    MOCK.class = { "Warrior", "WARRIOR" }
+    WH.player = nil
+    check(lessons and not WH:StepApplies(barrens.steps[lessons]), "Tauren warrior skips druid quests")
+    local mul = WH.guides["tauren-01-mulgore"]
+    local hunterTame
+    for idx, st in ipairs(mul.steps) do if st.questId == 6061 and st.action == "accept" then hunterTame = idx end end
+    check(hunterTame and not WH:StepApplies(mul.steps[hunterTame]), "Tauren warrior skips hunter taming")
+    -- Zone inheritance after the druid block stays in The Barrens
+    for idx, st in ipairs(barrens.steps) do
+        if st.questId == 31 and st.action == "turnin" then
+            check(barrens.steps[idx + 1].zone == "The Barrens", "step after the druid block is back in The Barrens (got " .. tostring(barrens.steps[idx + 1].zone) .. ")")
+        end
+    end
     MOCK.race, MOCK.class, MOCK.level = savedRace, savedClass, savedLevel
     WH.player = nil
 end

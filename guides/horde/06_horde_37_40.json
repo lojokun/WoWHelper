@@ -4,7 +4,7 @@
   "title": "Arathi, Alterac, Dustwallow",
   "description": "Levels 37-40: Arathi Highlands from Hammerfall, the Alterac quests from Tarren Mill and the first Dustwallow Marsh visit.",
   "faction": "Horde",
-  "races": ["Scourge", "Orc", "Troll"],
+  "races": ["Scourge", "Orc", "Troll", "Tauren"],
   "minLevel": 37,
   "maxLevel": 40,
   "next": "horde-07-40-45",
