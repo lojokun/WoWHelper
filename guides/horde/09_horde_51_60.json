@@ -4,7 +4,7 @@
   "title": "Un'Goro, Winterspring, Felwood, Plaguelands, Hyjal",
   "description": "Levels 51-60: Un'Goro Crater, Burning Steppes, Winterspring, Felwood, the Plaguelands, Silithus and WoW Forever's Mount Hyjal.",
   "faction": "Horde",
-  "races": ["Scourge", "Orc"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 51,
   "maxLevel": 60,
   "zone": "Un'Goro Crater",

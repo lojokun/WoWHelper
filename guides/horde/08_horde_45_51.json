@@ -4,7 +4,7 @@
   "title": "Stranglethorn, Dustwallow, Tanaris, Feralas, Hinterlands",
   "description": "Levels 45-51: Booty Bay and southern Stranglethorn, Dustwallow's Brood of Onyxia line, Tanaris, Feralas and The Hinterlands.",
   "faction": "Horde",
-  "races": ["Scourge", "Orc"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 45,
   "maxLevel": 51,
   "next": "horde-09-51-60",

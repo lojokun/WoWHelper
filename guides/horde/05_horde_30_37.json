@@ -4,7 +4,7 @@
   "title": "Thousand Needles, Desolace, Alterac, Stranglethorn",
   "description": "Levels 30-37: Thousand Needles and the Shimmering Flats, Desolace, the Alterac quests from Tarren Mill and northern Stranglethorn.",
   "faction": "Horde",
-  "races": ["Scourge", "Orc"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 30,
   "maxLevel": 37,
   "next": "horde-06-37-40",

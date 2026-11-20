@@ -4,7 +4,7 @@
   "title": "Swamp of Sorrows, The Riverglades, Badlands",
   "description": "Levels 40-45: Stonard, WoW Forever's new Riverglades zone (Rog'mar), then the Badlands and the rest of the Swamp.",
   "faction": "Horde",
-  "races": ["Scourge", "Orc"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 40,
   "maxLevel": 45,
   "next": "horde-08-45-51",

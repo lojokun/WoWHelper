@@ -1,6 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file="Zones.lua"/>
-  <Script file="orc-01-durotar.lua"/>
+  <Script file="horde-01-durotar.lua"/>
   <Script file="undead-01-tirisfal.lua"/>
   <Script file="horde-02-silverpine.lua"/>
   <Script file="horde-03-barrens.lua"/>

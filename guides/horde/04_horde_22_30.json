@@ -4,7 +4,7 @@
   "title": "Stonetalon, Hillsbrad, Southern Barrens, Ashenvale",
   "description": "Levels 22-30: Stonetalon, Fenris Isle and Hillsbrad, the southern Barrens, Ashenvale, and back to Stonetalon.",
   "faction": "Horde",
-  "races": ["Scourge", "Orc"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 22,
   "maxLevel": 30,
   "next": "horde-05-30-37",

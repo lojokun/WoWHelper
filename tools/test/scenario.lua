@@ -199,17 +199,39 @@ do
     local savedRace, savedClass, savedLevel = MOCK.race, MOCK.class, MOCK.level
     MOCK.race, MOCK.class, MOCK.level = { "Orc", "Orc" }, { "Shaman", "SHAMAN" }, 1
     WH.player = nil
-    check(WH:GuideForLevel().id == "orc-01-durotar", "level 1 Orc gets the Durotar guide (got " .. tostring(WH:GuideForLevel().id) .. ")")
+    check(WH:GuideForLevel().id == "horde-01-durotar", "level 1 Orc gets the Durotar guide (got " .. tostring(WH:GuideForLevel().id) .. ")")
     check(WH:StepApplies(silver.steps[orcStep]), "Orc-only Silverpine step shown to Orcs")
     check(WH:GuideApplies(WH.guides["horde-04-22-30"]), "shared 22-30 guide applies to Orcs")
     check(not WH:GuideApplies(WH.guides["undead-01-tirisfal"]), "Tirisfal guide hidden from Orcs")
-    local dur = WH.guides["orc-01-durotar"]
-    local vf
-    for idx, st in ipairs(dur.steps) do if st.questId == 792 and st.action == "accept" then vf = idx end end
+    local dur = WH.guides["horde-01-durotar"]
+    local vf, parch, tablet, juju
+    for idx, st in ipairs(dur.steps) do
+        if st.questId == 792 and st.action == "accept" then vf = idx end
+        if st.questId == 3089 and st.action == "accept" then parch = idx end
+        if st.questId == 3084 and st.action == "accept" then tablet = idx end
+        if st.questId == 1884 and st.action == "accept" then juju = idx end
+    end
     check(vf and WH:StepApplies(dur.steps[vf]), "Orc shaman gets Vile Familiars (792)")
+    check(parch and WH:StepApplies(dur.steps[parch]), "Orc shaman gets the Rune-Inscribed Parchment")
+    check(tablet and not WH:StepApplies(dur.steps[tablet]), "Orc shaman does not get the Troll tablet")
     MOCK.class = { "Warlock", "WARLOCK" }
     WH.player = nil
     check(vf and not WH:StepApplies(dur.steps[vf]), "Orc warlock skips the non-warlock Vile Familiars")
+
+    -- Troll: same start zone, own class letters and Troll-only class quests
+    MOCK.race, MOCK.class = { "Troll", "Troll" }, { "Shaman", "SHAMAN" }
+    WH.player = nil
+    check(WH:GuideForLevel().id == "horde-01-durotar", "level 1 Troll gets the Durotar guide")
+    check(tablet and WH:StepApplies(dur.steps[tablet]), "Troll shaman gets the Rune-Inscribed Tablet")
+    check(parch and not WH:StepApplies(dur.steps[parch]), "Troll shaman does not get the Orc parchment")
+    check(WH:StepApplies(silver.steps[orcStep]), "Orc/Troll zeppelin start shown to Trolls")
+    check(WH:GuideApplies(WH.guides["horde-09-51-60"]), "shared 51-60 guide applies to Trolls")
+    MOCK.class = { "Mage", "MAGE" }
+    WH.player = nil
+    check(juju and WH:StepApplies(dur.steps[juju]), "Troll mage gets Ju-Ju Heaps")
+    MOCK.race = { "Orc", "Orc" }
+    WH.player = nil
+    check(juju and not WH:StepApplies(dur.steps[juju]), "Orc mage does not get Ju-Ju Heaps")
     MOCK.race, MOCK.class, MOCK.level = savedRace, savedClass, savedLevel
     WH.player = nil
 end

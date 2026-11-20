@@ -46,7 +46,7 @@ with coordinates, an arrow and the distance to the target.
 
 Waypoints use TomTom if it is installed, otherwise the built-in map pin.
 
-## Guides included (Undead and Orc, all classes)
+## Guides included (Undead, Orc and Troll, all classes)
 
 Each race has its own starting guide; from level 12 both races share the Horde guides.
 Race-only steps use `"races": [...]` and class-only steps use `"classes": [...]`, so each character
@@ -55,8 +55,8 @@ sees only its own steps.
 | File | Levels | Zones |
 |---|---|---|
 | `undead/01_tirisfal_glades.json` | 1-12 | Undead: Deathknell, Brill, Undercity |
-| `orc/01_durotar.json` | 1-12 | Orc: Valley of Trials, Sen'jin, Razor Hill, Echo Isles, Orgrimmar |
-| `horde/02_silverpine_forest.json` | 12-16 | The Sepulcher (Orcs arrive by zeppelin); Undead-only Sepulcher chain |
+| `horde/01_durotar.json` | 1-12 | Orc and Troll: Valley of Trials, Sen'jin, Razor Hill, Echo Isles, Orgrimmar |
+| `horde/02_silverpine_forest.json` | 12-16 | The Sepulcher (Orcs and Trolls arrive by zeppelin); Undead-only Sepulcher chain |
 | `horde/03_the_barrens.json` | 16-22 | Crossroads, Ratchet, Camp Taurajo; Orc Meats to Orgrimmar and Ak'Zeloth; Warlock Succubus |
 | `horde/04_horde_22_30.json` | 22-30 | Stonetalon, Fenris Isle, Hillsbrad, southern Barrens, Ashenvale |
 | `horde/05_horde_30_37.json` | 30-37 | Thousand Needles, Shimmering Flats, Desolace, Alterac, northern Stranglethorn |
@@ -67,7 +67,9 @@ sees only its own steps.
 
 Class quests covered: Undead Warrior, Mage, Priest, Rogue, Warlock; Orc Warrior (Veteran Uzzek), Hunter
 (Taming the Beast), Rogue (The Shattered Hand), Shaman (Call of Earth, start of Call of Fire and Call of Water),
-Warlock (Vile Familiars, start of the Voidwalker chain) and Mage (new on Forever; no class quests found yet).
+Warlock (Vile Familiars, start of the Voidwalker chain) and Mage (new on Forever; no class quests found yet);
+Troll class letters for all seven classes (including Forever's new Troll Warlock), Troll Mage Ju-Ju Heaps
+and Troll Priest Shadowguard.
 Optional steps never block the guide: they show as upcoming hints and are skipped unless you have the quest.
 
 **Accuracy:**
