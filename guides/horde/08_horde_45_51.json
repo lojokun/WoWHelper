@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "undead-08-horde-45-51",
+  "id": "horde-08-45-51",
   "title": "Stranglethorn, Dustwallow, Tanaris, Feralas, Hinterlands",
   "description": "Levels 45-51: Booty Bay and southern Stranglethorn, Dustwallow's Brood of Onyxia line, Tanaris, Feralas and The Hinterlands.",
   "faction": "Horde",
-  "races": ["Scourge"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 45,
   "maxLevel": 51,
-  "next": "undead-09-horde-51-60",
+  "next": "horde-09-51-60",
   "zone": "Stranglethorn Vale",
   "sources": ["Quest IDs and coordinates: Classic Era quest data (WoW-Pro guide data used as a fact reference).", "WoW Forever changes: warcraftmaps.com, conquestcapped.com (Nov 2026)."],
   "steps": [

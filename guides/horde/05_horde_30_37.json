@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "undead-05-horde-30-37",
+  "id": "horde-05-30-37",
   "title": "Thousand Needles, Desolace, Alterac, Stranglethorn",
   "description": "Levels 30-37: Thousand Needles and the Shimmering Flats, Desolace, the Alterac quests from Tarren Mill and northern Stranglethorn.",
   "faction": "Horde",
-  "races": ["Scourge"],
+  "races": ["Scourge", "Orc", "Troll"],
   "minLevel": 30,
   "maxLevel": 37,
-  "next": "undead-06-horde-37-40",
+  "next": "horde-06-37-40",
   "zone": "Thousand Needles",
   "sources": ["Quest IDs and coordinates: Classic Era quest data (WoW-Pro guide data used as a fact reference).", "WoW Forever changes: bindonforever.com, foreverdb.net, warcraftmaps.com (Nov 2026)."],
   "steps": [

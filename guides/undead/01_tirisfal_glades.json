@@ -7,7 +7,7 @@
   "races": ["Scourge"],
   "minLevel": 1,
   "maxLevel": 12,
-  "next": "undead-02-silverpine",
+  "next": "horde-02-silverpine",
   "zone": "Tirisfal Glades",
   "sources": [
     "Quest IDs and coordinates: Classic Era quest data (WoW-Pro guide data used as a fact reference).",
