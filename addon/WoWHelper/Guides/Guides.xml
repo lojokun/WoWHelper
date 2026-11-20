@@ -1,12 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/">
   <Script file="Zones.lua"/>
+  <Script file="orc-01-durotar.lua"/>
   <Script file="undead-01-tirisfal.lua"/>
-  <Script file="undead-02-silverpine.lua"/>
-  <Script file="undead-03-barrens.lua"/>
-  <Script file="undead-04-horde-22-30.lua"/>
-  <Script file="undead-05-horde-30-37.lua"/>
-  <Script file="undead-06-horde-37-40.lua"/>
-  <Script file="undead-07-horde-40-45.lua"/>
-  <Script file="undead-08-horde-45-51.lua"/>
-  <Script file="undead-09-horde-51-60.lua"/>
+  <Script file="horde-02-silverpine.lua"/>
+  <Script file="horde-03-barrens.lua"/>
+  <Script file="horde-04-22-30.lua"/>
+  <Script file="horde-05-30-37.lua"/>
+  <Script file="horde-06-37-40.lua"/>
+  <Script file="horde-07-40-45.lua"/>
+  <Script file="horde-08-45-51.lua"/>
+  <Script file="horde-09-51-60.lua"/>
 </Ui>

@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "undead-04-horde-22-30",
+  "id": "horde-04-22-30",
   "title": "Stonetalon, Hillsbrad, Southern Barrens, Ashenvale",
   "description": "Levels 22-30: Stonetalon, Fenris Isle and Hillsbrad, the southern Barrens, Ashenvale, and back to Stonetalon.",
   "faction": "Horde",
-  "races": ["Scourge"],
+  "races": ["Scourge", "Orc"],
   "minLevel": 22,
   "maxLevel": 30,
-  "next": "undead-05-horde-30-37",
+  "next": "horde-05-30-37",
   "zone": "Stonetalon Mountains",
   "sources": ["Quest IDs and coordinates: Classic Era quest data (WoW-Pro guide data used as a fact reference).", "WoW Forever route changes: bindonforever.com, warcraftmaps.com, wowhandbook.com (Nov 2026)."],
   "steps": [

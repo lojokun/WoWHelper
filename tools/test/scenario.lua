@@ -36,7 +36,7 @@ MOCK.fire("ADDON_LOADED", "WoWHelper")
 MOCK.fire("PLAYER_LOGIN")
 MOCK.runTimers()
 
-check(#WH.guideOrder == 9, "9 guides loaded (got " .. #WH.guideOrder .. ")")
+check(#WH.guideOrder == 10, "10 guides loaded (got " .. #WH.guideOrder .. ")")
 check(WH.char.guideId == "undead-01-tirisfal", "level 1 Undead starts in Tirisfal")
 check(WH.zonesByName["Tirisfal Glades"] == 1420, "zones loaded")
 check(WH:ResolveMapId("The Riverglades") == 2001, "unknown Forever zone resolved by name")
@@ -139,13 +139,13 @@ check(s.action ~= "sethearth", "HEARTHSTONE_BOUND completes the sethearth step")
 WH.char.progress[g.id] = #g.steps
 MOCK.level = 12
 WH:Refresh()
-check(WH.char.guideId == "undead-02-silverpine", "finishing a guide moves to its 'next' guide")
+check(WH.char.guideId == "horde-02-silverpine", "finishing a guide moves to its 'next' guide")
 
 -- Level-based start: /wh auto at level 29 lands in the 22-30 guide, past its level 28 checkpoint
 MOCK.level = 29
 WH:AutoSelectGuide()
-check(WH.char.guideId == "undead-04-horde-22-30", "level 29 picks the 22-30 guide (got " .. tostring(WH.char.guideId) .. ")")
-local g4 = WH.guides["undead-04-horde-22-30"]
+check(WH.char.guideId == "horde-04-22-30", "level 29 picks the 22-30 guide (got " .. tostring(WH.char.guideId) .. ")")
+local g4 = WH.guides["horde-04-22-30"]
 local cp
 for idx, st in ipairs(g4.steps) do if st.action == "level" and st.level == 28 then cp = idx end end
 local _, i4 = cur()
@@ -187,6 +187,32 @@ check(ok and WH.guides["test-import"] and WH.db.customGuides["test-import"], "im
 check(WH.guides["test-import"].steps[2].mapId == 1421, "imported step resolves its map")
 local bad, err = WH:ImportGuide('{"id":"x","title":"x","steps":[{"action":"dance"}]}')
 check(bad == nil and err:find("unknown action"), "import rejects bad actions")
+
+-- Orc: level 1 starts in Durotar; Orc-only steps are hidden from Undead and shown to Orcs
+do
+    local silver = WH.guides["horde-02-silverpine"]
+    local orcStep
+    for idx, st in ipairs(silver.steps) do
+        if st.races and st.raceSet and st.raceSet.orc then orcStep = idx break end
+    end
+    check(orcStep and not WH:StepApplies(silver.steps[orcStep]), "Orc-only Silverpine step hidden from Undead")
+    local savedRace, savedClass, savedLevel = MOCK.race, MOCK.class, MOCK.level
+    MOCK.race, MOCK.class, MOCK.level = { "Orc", "Orc" }, { "Shaman", "SHAMAN" }, 1
+    WH.player = nil
+    check(WH:GuideForLevel().id == "orc-01-durotar", "level 1 Orc gets the Durotar guide (got " .. tostring(WH:GuideForLevel().id) .. ")")
+    check(WH:StepApplies(silver.steps[orcStep]), "Orc-only Silverpine step shown to Orcs")
+    check(WH:GuideApplies(WH.guides["horde-04-22-30"]), "shared 22-30 guide applies to Orcs")
+    check(not WH:GuideApplies(WH.guides["undead-01-tirisfal"]), "Tirisfal guide hidden from Orcs")
+    local dur = WH.guides["orc-01-durotar"]
+    local vf
+    for idx, st in ipairs(dur.steps) do if st.questId == 792 and st.action == "accept" then vf = idx end end
+    check(vf and WH:StepApplies(dur.steps[vf]), "Orc shaman gets Vile Familiars (792)")
+    MOCK.class = { "Warlock", "WARLOCK" }
+    WH.player = nil
+    check(vf and not WH:StepApplies(dur.steps[vf]), "Orc warlock skips the non-warlock Vile Familiars")
+    MOCK.race, MOCK.class, MOCK.level = savedRace, savedClass, savedLevel
+    WH.player = nil
+end
 
 -- Slash commands don't error
 for _, cmd in ipairs({ "", "", "lock", "unlock", "reset", "next", "prev", "guides", "import", "where", "where accept Some Quest", "waypoint", "options", "help" }) do

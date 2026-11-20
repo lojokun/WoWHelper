@@ -127,10 +127,13 @@ function WH:IsStepDone(g, i, isCurrent)
     local s = g.steps[i]
     if manualSet(self, g)[i] then return true end
     local a = s.action
-    -- Optional quests the player never picked up are skipped automatically.
-    if s.optional and isCurrent and (a == "complete" or a == "turnin")
-        and not logQuestId(s) and not isTurnedIn(self, s) then
-        return true
+    -- Optional steps never block: they show as hints in the upcoming list, and
+    -- once current they are skipped unless the player has that quest.
+    if s.optional and isCurrent then
+        if a == "note" or a == "accept" then return true end
+        if (a == "complete" or a == "turnin") and not logQuestId(s) and not isTurnedIn(self, s) then
+            return true
+        end
     end
     if a == "accept" then
         if isTurnedIn(self, s) then return true end

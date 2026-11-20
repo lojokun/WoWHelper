@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "id": "undead-07-horde-40-45",
+  "id": "horde-07-40-45",
   "title": "Swamp of Sorrows, The Riverglades, Badlands",
   "description": "Levels 40-45: Stonard, WoW Forever's new Riverglades zone (Rog'mar), then the Badlands and the rest of the Swamp.",
   "faction": "Horde",
-  "races": ["Scourge"],
+  "races": ["Scourge", "Orc"],
   "minLevel": 40,
   "maxLevel": 45,
-  "next": "undead-08-horde-45-51",
+  "next": "horde-08-45-51",
   "zone": "Swamp of Sorrows",
   "sources": ["Swamp of Sorrows and Badlands quest IDs and coordinates: Classic Era quest data (WoW-Pro guide data used as a fact reference).", "The Riverglades quests, IDs and givers: foreverdb.net and bindonforever.com (Nov 2026). Giver coordinates were not published; use /wh where to record them."],
   "steps": [
